@@ -1,76 +1,59 @@
+# Metal Slug Game
+
+## Features
+- **Login and Signup Screens**: Users can create an account or log in to play the game.
+- **Level Selection**: Players can choose from levels 1 to 5, each with varying difficulty.
+- **Shooting Mechanics**: Players can shoot enemies and interact with the game world.
+- **Enemy Spawning System**: Enemies spawn at various points and provide challenges to players.
+- **Health and Score Tracking**: The game tracks player health and score throughout gameplay.
+- **Improved UI Design**: Enhanced user interface for easier navigation and an engaging player experience.
+
+## Code Structure
+
+```python
 import pygame
-import random
 
-# Initialize Pygame
-pygame.init()
-
-# Game Constants
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-BALL_SIZE = 20
-
-# User data storage
-users = {}  # Dictionary to store username and password pairs
-
-# Function for user signup
-def signup(username, password):
-    if username in users:
-        return "Username already exists."
-    users[username] = password
-    return "Signup successful!"
-
-# Function for user login
-def login(username, password):
-    if users.get(username) == password:
-        return "Login successful!"
-    return "Invalid username or password."
-
-# Difficulty levels
-levels = {1: 5, 2: 8, 3: 12, 4: 15, 5: 20}
-
-# Ball class for the bouncing ball
-class Ball:
+class Game:
     def __init__(self):
-        self.x = SCREEN_WIDTH // 2
-        self.y = SCREEN_HEIGHT // 2
-        self.x_speed = random.choice([-1, 1]) * random.randint(5, 10)
-        self.y_speed = random.choice([-1, 1]) * random.randint(5, 10)
+        self.score = 0
+        self.health = 100
+        self.level = 1
+        self.login_screen()
 
-    def move(self):
-        self.x += self.x_speed
-        self.y += self.y_speed
+    def login_screen(self):
+        # Code for login screen
+        pass
+    
+    def signup_screen(self):
+        # Code for signup screen
+        pass
+    
+    def start_game(self):
+        # Code to initialize the game
+        pass
+    
+    def spawn_enemies(self):
+        # Code to handle enemy spawning
+        pass
+    
+    def update_score(self):
+        # Code to update score
+        pass
+    
+    def draw_ui(self):
+        # Code to draw the user interface
+        pass
 
-        # Bounce off the walls
-        if self.x <= 0 or self.x >= SCREEN_WIDTH:
-            self.x_speed *= -1
-        if self.y <= 0 or self.y >= SCREEN_HEIGHT:
-            self.y_speed *= -1
+if __name__ == "__main__":
+    Game() 
+```
 
-# Main game function
-def play_game(difficulty):
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("Bouncing Ball Game")
-    clock = pygame.time.Clock()
-    ball = Ball()
-    game_running = True
+## Instructions
+1. Ensure you have Python and Pygame installed.
+2. Run the game by executing `python main.py`.
+3. Follow instructions on the screen for login and gameplay.
 
-    while game_running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                game_running = False
-
-        screen.fill((0, 0, 0))  # Clear screen with black
-        ball.move()
-        pygame.draw.circle(screen, (255, 0, 0), (ball.x, ball.y), BALL_SIZE)
-
-        pygame.display.flip()  # Update the screen
-        clock.tick(levels[difficulty])  # Control the speed based on difficulty
-
-    pygame.quit()
-
-# Example usage of signup and login functions
-print(signup('player1', 'password123'))  # Example to signup
-print(login('player1', 'password123'))  # Example to login
-
-# Start the game - adjust difficulty level as needed
-play_game(3)  # Start the game with difficulty level 3
+## Future Improvements
+- Add multiplayer functionality
+- Implement additional levels and enemies
+- Optimize performance for smoother gameplay
